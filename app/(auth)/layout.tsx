@@ -19,13 +19,13 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               This is the place where you can store all your storage needs
             </p>
           </div>
-          <Image
+          {/* <Image
             src={`/assets/images/files.png`}
             alt="Files"
             width={342}
             height={342}
             className="transition-all hover:rotate-2 hover:scale-105"
-          />
+          /> */}
         </div>
       </section>
       <section className="flex flex-1 flex-col items-center bg-white p-4 py-10 lg:justify-center lg:p-10 lg:py-0">
