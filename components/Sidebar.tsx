@@ -39,7 +39,7 @@ const Sidebar = ({
       <nav className="sidebar-nav">
         <ul className="flex flex-1 flex-col gap-6">
           {navItems.map(({ name, icon, url }) => (
-            <Link href={url} key={name}>
+            <Link href={url} key={name} className="lg:w-full">
               <li
                 className={cn(
                   "sidebar-nav-item",
