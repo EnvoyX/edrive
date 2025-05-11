@@ -357,6 +357,9 @@
   .error-toast {
     @apply bg-red !rounded-[10px] !important;
   }
+  .success-toast {
+    @apply bg-teal-500 !rounded-[10px] !important;
+  }
 
   /* Header */
   .header {
@@ -445,7 +448,7 @@
 
   /* Thumbnail */
   .thumbnail {
-    @apply flex-center size-[50px] min-w-[50px] overflow-hidden rounded-full bg-brand/10;
+    @apply flex-center size-[50px] min-w-[50px] overflow-hidden rounded-full bg-teal-500/10;
   }
   .thumbnail-image {
     @apply size-full object-cover object-center !important;
