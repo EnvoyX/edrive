@@ -23,26 +23,38 @@ import { Models } from "node-appwrite";
 import { useState } from "react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { renameFile } from "@/lib/actions/file.actions";
+import { renameFile, updateFileUsers } from "@/lib/actions/file.actions";
 import { usePathname } from "next/navigation";
 import { toast } from "@/hooks/use-toast";
-import { FileDetails } from "./ActionModalContent";
+import { FileDetails, ShareInput } from "./ActionModalContent";
 
 const ActionDropdown = ({ file }: { file: Models.Document }) => {
+  const path = usePathname();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [action, setAction] = useState<ActionType | null>(null);
   const [name, setName] = useState(file.name);
   const [loading, setLoading] = useState(false);
+  const [emails, setEmails] = useState<string[]>([]);
 
-  const path = usePathname();
+  const handleRemoveUser = async (email: string) => {
+    const updatedEmails = emails.filter((e) => e !== email);
+
+    const success = await updateFileUsers({
+      fileId: file.$id,
+      emails: updatedEmails,
+      path,
+    });
+    if (success) setEmails(updatedEmails);
+    closeAllModals();
+  };
 
   const closeAllModals = () => {
     setIsModalOpen(false);
     setIsDropdownOpen(false);
     setAction(null);
     setName(file.name);
-    // setEmails([]);
+    setEmails([]);
     setLoading(false);
   };
 
@@ -55,7 +67,12 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
       rename: () =>
         renameFile({ fileId: file.$id, name, extension: file.extension, path }),
       delete: () => {},
-      share: () => {},
+      share: () =>
+        updateFileUsers({
+          fileId: file.$id,
+          emails,
+          path,
+        }),
     };
 
     success = await actions[action.value as keyof typeof actions]();
@@ -86,6 +103,13 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
             />
           )}
           {value === "details" && <FileDetails file={file} />}
+          {value === "share" && (
+            <ShareInput
+              file={file}
+              onInputChange={setEmails}
+              onRemove={handleRemoveUser}
+            />
+          )}
         </DialogHeader>
         {["rename", "delete", "share"].includes(value) && (
           <DialogFooter className="flex flex-col gap-3 md:flex-row ">
@@ -132,7 +156,6 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
               className="shad-dropdown-item"
               onClick={() => {
                 setAction(actionItem);
-
                 if (
                   ["rename", "share", "delete", "details"].includes(
                     actionItem.value
