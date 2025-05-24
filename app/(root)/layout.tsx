@@ -6,6 +6,10 @@ import { redirect } from "next/navigation";
 import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 
+// setting this to force-dynamic will make the page rendered on the server for each request
+// not same as client-side rendering
+export const dynamic = "force-dynamic";
+
 const Layout = async ({ children }: { children: React.ReactNode }) => {
   const currentUser = await getCurrentUser();
   if (!currentUser) return redirect("/sign-in");
