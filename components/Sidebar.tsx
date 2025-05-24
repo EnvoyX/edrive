@@ -42,7 +42,7 @@ const Sidebar = ({
             <Link href={url} key={name} className="lg:w-full">
               <li
                 className={cn(
-                  "sidebar-nav-item",
+                  "sidebar-nav-item hover:scale-105 hover:shad-active  transition-all",
                   pathname === url && "shad-active"
                 )}
               >

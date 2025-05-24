@@ -23,6 +23,7 @@ const Dashboard = async () => {
   return (
     <div className="dashboard-container">
       <section>
+        {/* Available storage chart */}
         <Chart used={totalSpace.used} />
 
         {/* Uploaded file type summaries */}
@@ -68,7 +69,7 @@ const Dashboard = async () => {
               <Link
                 href={file.url}
                 target="_blank"
-                className="flex items-center gap-3"
+                className="flex items-center gap-3 hover:scale-105 transition-all"
                 key={file.$id}
               >
                 <Thumbnail
@@ -85,7 +86,9 @@ const Dashboard = async () => {
                       className="caption"
                     />
                   </div>
-                  <ActionDropdown file={file} />
+                  <div className="flex-shrink-0">
+                    <ActionDropdown file={file} />
+                  </div>
                 </div>
               </Link>
             ))}

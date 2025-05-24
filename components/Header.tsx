@@ -24,7 +24,10 @@ const Header = ({
             await signOutUser();
           }}
         >
-          <Button type="submit" className="sign-out-button">
+          <Button
+            type="submit"
+            className="sign-out-button hover:scale-105 transition-all"
+          >
             <Image
               src={`/assets/icons/logout.svg`}
               alt="logo"

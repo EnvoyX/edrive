@@ -73,7 +73,13 @@ const FileUploader = ({
   return (
     <div {...getRootProps()} className="cursor-pointer">
       <input {...getInputProps()} />
-      <Button type="button" className={cn("uploader-button", className)}>
+      <Button
+        type="button"
+        className={cn(
+          "uploader-button hover:scale-105 transition-all",
+          className
+        )}
+      >
         <Image
           src="/assets/icons/upload.svg"
           alt="upload"

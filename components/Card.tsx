@@ -7,7 +7,11 @@ import ActionDropdown from "./ActionDropdown";
 
 export const Card = ({ file }: { file: Models.Document }) => {
   return (
-    <Link href={file.url} target="_blank" className="file-card">
+    <Link
+      href={file.url}
+      target="_blank"
+      className="file-card hover:scale-105 transition-all"
+    >
       <div className="flex justify-between">
         <Thumbnail
           type={file.type}
