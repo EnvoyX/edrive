@@ -6,9 +6,24 @@
   * {
     @apply scroll-smooth;
   }
+  :root {
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
 
   body {
     @apply bg-white text-dark-200 min-h-screen;
+  }
+
+  .dark {
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
   }
 
   /* Remove scrollbar */
@@ -319,13 +334,13 @@
 
   /* Chart */
   .chart {
-    @apply flex items-center rounded-[20px] bg-brand p-5 text-white md:flex-col xl:flex-row !important;
+    @apply flex items-center rounded-[20px] bg-teal-500 p-5 text-white md:flex-col xl:flex-row !important;
   }
   .chart-container {
     @apply mx-auto aspect-square w-[180px] text-white xl:w-[250px] !important;
   }
   .polar-grid {
-    @apply first:fill-white/20 last:fill-brand !important;
+    @apply first:fill-white/20 last:fill-teal-500 !important;
   }
   .chart-details {
     @apply flex-1 items-start px-3 py-0 sm:px-5 lg:p-3 xl:pr-5 !important;
